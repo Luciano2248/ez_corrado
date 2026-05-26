@@ -69,7 +69,7 @@
     #inicio::before {
       content: '';
       position: absolute; inset: -20px;
-      background: url('Captura1.JPG') center/cover no-repeat;
+      background: url('IMG-20260525-WA0050.jpg') center/cover no-repeat;
       filter: blur(5px);
       transform: scale(1.05);
       z-index: 0;
@@ -140,53 +140,138 @@
     section { padding: 6rem 2rem; }
     .container { max-width: 1200px; margin: 0 auto; }
 
-    /* ─── SERVICIOS ─── */
-    #servicios { background: var(--oscuro); }
-    .servicios-grid {
+    /* ─── FONDOS / SERVICIOS ─── */
+    #servicios {
+      padding: 0;
+      background: var(--negro);
+    }
+    .fondos-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 2rem;
+      grid-template-columns: repeat(4, 1fr);
+      min-height: 82vh;
     }
-    .servicio-card {
-      background: var(--gris1);
-      border: 1px solid rgba(201,168,76,0.12);
-      border-radius: 16px; padding: 2.5rem 2rem;
-      transition: transform .3s, border-color .3s, box-shadow .3s;
-      text-align: center; position: relative; overflow: hidden;
+    .fondo-panel {
+      position: relative;
+      overflow: hidden;
+      cursor: default;
     }
-    .servicio-card::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
-      background: linear-gradient(90deg, transparent, var(--oro), transparent);
-      opacity: 0; transition: opacity .3s;
+    .fondo-bg {
+      position: absolute; inset: 0;
+      background-size: cover; background-position: center;
+      transition: transform .7s ease;
     }
-    .servicio-card:hover { transform: translateY(-6px); border-color: rgba(201,168,76,0.35); box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
-    .servicio-card:hover::before { opacity: 1; }
-    .servicio-icon { font-size: 3rem; margin-bottom: 1.2rem; display: block; }
-    .servicio-card h3 { color: var(--oro); font-size: 1.2rem; margin-bottom: .8rem; letter-spacing: .05em; }
-    .servicio-card p { color: #999; font-size: .9rem; line-height: 1.7; font-weight: 300; }
+    .fondo-panel:hover .fondo-bg { transform: scale(1.07); }
+    .fondo-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.30) 0%,
+        rgba(0,0,0,0.55) 50%,
+        rgba(0,0,0,0.80) 100%
+      );
+      transition: background .4s;
+    }
+    .fondo-panel:hover .fondo-overlay {
+      background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.15) 0%,
+        rgba(0,0,0,0.40) 50%,
+        rgba(0,0,0,0.72) 100%
+      );
+    }
+    .fondo-content {
+      position: relative; z-index: 2;
+      padding: 2.2rem 2rem;
+      height: 100%;
+      display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .fondo-num {
+      font-size: 1.3rem; font-weight: 900;
+      color: var(--oro); letter-spacing: .08em;
+      font-family: 'Montserrat', sans-serif;
+    }
+    .fondo-bottom {}
+    .fondo-sep {
+      width: 36px; height: 2px;
+      background: var(--oro);
+      margin-bottom: .9rem;
+    }
+    .fondo-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.3rem, 2vw, 1.9rem);
+      color: #fff; font-weight: 700;
+      margin-bottom: .6rem; line-height: 1.15;
+    }
+    .fondo-desc {
+      color: rgba(255,255,255,0.78);
+      font-size: .82rem; line-height: 1.65; font-weight: 300;
+    }
 
-    /* ─── PORTFOLIO ─── */
+    @media (max-width: 900px) {
+      .fondos-grid {
+        grid-template-columns: repeat(2, 1fr);
+        min-height: auto;
+      }
+      .fondo-panel { min-height: 55vw; }
+    }
+    @media (max-width: 500px) {
+      .fondos-grid { grid-template-columns: 1fr; }
+      .fondo-panel { min-height: 75vw; }
+    }
+
+    /* ─── NUESTROS TRABAJOS ─── */
     #trabajos { background: var(--negro); }
-    .portfolio-grid {
+    .trabajos-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
+      gap: 1rem;
     }
-    .portfolio-item {
-      position: relative; border-radius: 12px; overflow: hidden;
+    .trabajo-item {
+      position: relative; border-radius: 10px; overflow: hidden;
       aspect-ratio: 4/3;
-      border: 1px solid rgba(201,168,76,0.1);
+      border: 1px solid rgba(201,168,76,0.08);
       background: var(--gris1);
     }
-    .portfolio-item img {
+    .trabajo-item img {
       width: 100%; height: 100%; object-fit: cover;
+      transition: transform .5s ease;
+      display: block;
       user-select: none; pointer-events: none;
     }
+    .trabajo-item:hover img { transform: scale(1.05); }
+
+    .trabajos-extra {
+      display: contents;
+    }
+    .trabajos-extra.oculto > .trabajo-item {
+      display: none;
+    }
+
+    .trabajos-cta {
+      text-align: center;
+      margin-top: 2.5rem;
+    }
+    .btn-ver-mas {
+      background: transparent;
+      border: 1px solid var(--oro);
+      color: var(--oro);
+      padding: .8rem 2.8rem; border-radius: 50px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: .82rem; font-weight: 700;
+      letter-spacing: .12em; text-transform: uppercase;
+      cursor: pointer;
+      transition: background .25s, color .25s, transform .2s;
+    }
+    .btn-ver-mas:hover {
+      background: var(--oro); color: var(--negro);
+      transform: translateY(-2px);
+    }
+
     @media (max-width: 700px) {
-      .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
+      .trabajos-grid { grid-template-columns: repeat(2, 1fr); }
     }
     @media (max-width: 420px) {
-      .portfolio-grid { grid-template-columns: 1fr; }
+      .trabajos-grid { grid-template-columns: 1fr; }
     }
 
     /* ─── CONTACTO ─── */
@@ -295,7 +380,7 @@
   <ul class="nav-links">
     <li><a href="#inicio">Inicio</a></li>
     <li><a href="#servicios">Servicios</a></li>
-    <li><a href="#trabajos">Portfolio</a></li>
+    <li><a href="#trabajos">Trabajos</a></li>
     <li><a href="#consultas">Contacto</a></li>
   </ul>
   <a class="nav-wsp-btn" href="https://wa.me/542494285254?text=Hola%2C%20consulto%20por%20pisos" target="_blank">
@@ -322,55 +407,102 @@
   </div>
 </section>
 
-<!-- ═══════════ SERVICIOS ═══════════ -->
+<!-- ═══════════ SERVICIOS – ESTILO FONDOS ═══════════ -->
 <section id="servicios">
-  <div class="container">
-    <div class="section-title fade-in">
-      <span class="tag">Lo que hacemos</span>
-      <h2>Nuestros Servicios</h2>
-      <div class="divider"></div>
-    </div>
-    <div class="servicios-grid">
-      <div class="servicio-card fade-in">
-        <span class="servicio-icon">🏗️</span>
-        <h3>Hormigón Llanado</h3>
-        <p>Pisos de hormigón ejecutados con llana mecánica, logrando superficies extremadamente lisas y resistentes, ideales para industrias, garajes y exteriores.</p>
-      </div>
-      <div class="servicio-card fade-in">
-        <span class="servicio-icon">✨</span>
-        <h3>Microcemento</h3>
-        <p>Revestimiento decorativo de alta resistencia que se adapta a cualquier superficie. Estético, moderno y sin juntas, perfecto para interiores de diseño.</p>
-      </div>
-      <div class="servicio-card fade-in">
-        <span class="servicio-icon">💎</span>
-        <h3>Alisado</h3>
-        <p>Acabado ultra liso sobre hormigón o mortero, ideal para pisos y paredes. Superficie brillante y de fácil mantenimiento con aspecto premium.</p>
-      </div>
-      <div class="servicio-card fade-in">
-        <span class="servicio-icon">🎨</span>
-        <h3>Texturas</h3>
-        <p>Acabados texturados personalizados para exteriores e interiores. Antideslizantes, estéticos y durables con variedad de colores y efectos decorativos.</p>
+  <div class="fondos-grid">
+
+    <div class="fondo-panel">
+      <div class="fondo-bg" style="background-image:url('IMG-20260525-WA0032.jpg')"></div>
+      <div class="fondo-overlay"></div>
+      <div class="fondo-content">
+        <span class="fondo-num">01.</span>
+        <div class="fondo-bottom">
+          <div class="fondo-sep"></div>
+          <h3 class="fondo-title">Hormigón Llanado</h3>
+          <p class="fondo-desc">Pisos ejecutados con llana mecánica. Superficies lisas, resistentes y duraderas para interiores, garajes y exteriores de alta exigencia.</p>
+        </div>
       </div>
     </div>
+
+    <div class="fondo-panel">
+      <div class="fondo-bg" style="background-image:url('IMG-20260525-WA0040.jpg')"></div>
+      <div class="fondo-overlay"></div>
+      <div class="fondo-content">
+        <span class="fondo-num">02.</span>
+        <div class="fondo-bottom">
+          <div class="fondo-sep"></div>
+          <h3 class="fondo-title">Alisado</h3>
+          <p class="fondo-desc">Acabado ultra liso sobre hormigón o mortero. Ideal para patios, quinchos y ambientes que buscan una terminación premium de bajo mantenimiento.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="fondo-panel">
+      <div class="fondo-bg" style="background-image:url('IMG-20260525-WA0028.jpg')"></div>
+      <div class="fondo-overlay"></div>
+      <div class="fondo-content">
+        <span class="fondo-num">03.</span>
+        <div class="fondo-bottom">
+          <div class="fondo-sep"></div>
+          <h3 class="fondo-title">Micropisos</h3>
+          <p class="fondo-desc">Revestimiento continuo sin juntas, de alta resistencia y estética industrial. Perfecto para galpones, naves y locales comerciales.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="fondo-panel">
+      <div class="fondo-bg" style="background-image:url('IMG-20260525-WA0041.jpg')"></div>
+      <div class="fondo-overlay"></div>
+      <div class="fondo-content">
+        <span class="fondo-num">04.</span>
+        <div class="fondo-bottom">
+          <div class="fondo-sep"></div>
+          <h3 class="fondo-title">Trabajos Especiales</h3>
+          <p class="fondo-desc">Escaleras, senderos, accesos y estructuras de hormigón con diseño. Combinamos técnica y estética en cada proyecto a medida.</p>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
-<!-- ═══════════ PORTFOLIO ═══════════ -->
+<!-- ═══════════ NUESTROS TRABAJOS ═══════════ -->
 <section id="trabajos">
   <div class="container">
     <div class="section-title fade-in">
       <span class="tag">Experiencia comprobada</span>
-      <h2>Trabajos Realizados</h2>
+      <h2>Nuestros Trabajos</h2>
       <div class="divider"></div>
     </div>
 
-    <div class="portfolio-grid">
-      <div class="portfolio-item fade-in"><img src="Captura1.JPG" alt="Trabajo 1" loading="lazy"></div>
-      <div class="portfolio-item fade-in"><img src="Captura2.JPG" alt="Trabajo 2" loading="lazy"></div>
-      <div class="portfolio-item fade-in"><img src="Captura3.JPG" alt="Trabajo 3" loading="lazy"></div>
-      <div class="portfolio-item fade-in"><img src="Captura4.JPG" alt="Trabajo 4" loading="lazy"></div>
-      <div class="portfolio-item fade-in"><img src="Captura5.JPG" alt="Trabajo 5" loading="lazy"></div>
-      <div class="portfolio-item fade-in"><img src="Captura6.JPG" alt="Trabajo 6" loading="lazy"></div>
+    <div class="trabajos-grid">
+      <!-- Fotos visibles por defecto -->
+      <div class="trabajo-item fade-in">
+        <img src="IMG-20260525-WA0029.jpg" alt="Piso de hormigón industrial" loading="lazy">
+      </div>
+      <div class="trabajo-item fade-in">
+        <img src="IMG-20260525-WA0034.jpg" alt="Losa de hormigón con junta" loading="lazy">
+      </div>
+      <div class="trabajo-item fade-in">
+        <img src="IMG-20260525-WA0050.jpg" alt="Piso alisado al atardecer" loading="lazy">
+      </div>
+
+      <!-- Fotos ocultas hasta Ver más -->
+      <div class="trabajos-extra oculto">
+        <div class="trabajo-item fade-in">
+          <img src="IMG-20260525-WA0037.jpg" alt="Acceso y sendero de hormigón" loading="lazy">
+        </div>
+        <div class="trabajo-item fade-in">
+          <img src="IMG-20260525-WA0047.jpg" alt="Encofrado y fundaciones" loading="lazy">
+        </div>
+        <div class="trabajo-item fade-in">
+          <img src="IMG-20260525-WA0040.jpg" alt="Patio hormigón alisado con quincho" loading="lazy">
+        </div>
+      </div>
+    </div>
+
+    <div class="trabajos-cta">
+      <button class="btn-ver-mas" id="btnVerMas" onclick="toggleTrabajos()">Ver más trabajos</button>
     </div>
   </div>
 </section>
@@ -414,7 +546,7 @@
   <div class="footer-links">
     <a href="#inicio">Inicio</a>
     <a href="#servicios">Servicios</a>
-    <a href="#trabajos">Portfolio</a>
+    <a href="#trabajos">Trabajos</a>
     <a href="#consultas">Contacto</a>
   </div>
   <p>© 2025 Ezco Construcciones · Ezequiel Corrado · Tandil, Buenos Aires<br>
@@ -445,7 +577,21 @@
   }, { threshold: 0.12 });
   document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
+  /* ─── VER MÁS TRABAJOS ─── */
+  function toggleTrabajos() {
+    const extra = document.querySelector('.trabajos-extra');
+    const btn = document.getElementById('btnVerMas');
+    const abierto = !extra.classList.contains('oculto');
 
+    if (abierto) {
+      extra.classList.add('oculto');
+      btn.textContent = 'Ver más trabajos';
+    } else {
+      extra.classList.remove('oculto');
+      btn.textContent = 'Ver menos';
+      extra.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    }
+  }
 </script>
 </body>
 </html>
