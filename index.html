@@ -58,6 +58,16 @@
     .nav-wsp-btn:hover { background: #1eba56; transform: scale(1.04); }
     .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; }
     .hamburger span { display: block; width: 25px; height: 2px; background: var(--oro); border-radius: 2px; }
+    .nav-li-wsp { display: none; }
+    .nav-wsp-mobile {
+      display: inline-flex; align-items: center; gap: .4rem;
+      background: var(--wsp) !important; color: #fff !important;
+      margin: 1rem 2rem 0; border-radius: 6px;
+      padding: .75rem 1.2rem !important;
+      font-size: .8rem !important; font-weight: 700 !important;
+      letter-spacing: .06em !important; width: calc(100% - 4rem);
+      justify-content: center;
+    }
 
     /* ─── HERO ─── */
     #inicio {
@@ -103,7 +113,7 @@
     }
     .hero-content h1 {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(2.8rem, 7vw, 5.2rem);
+      font-size: clamp(1.9rem, 7vw, 5.2rem);
       font-weight: 700; line-height: 1.05;
       color: #fff;
       margin-bottom: 0.4rem;
@@ -187,8 +197,11 @@
     }
     @media (max-width: 600px) {
       .hero-stats { gap: 0; }
-      .hero-stat { padding: 0 1.2rem; }
-      .hero-stat-n { font-size: 1.5rem; }
+      .hero-stat { padding: 0 1rem; }
+      .hero-stat-n { font-size: 1.4rem; }
+      .hero-stat-l { font-size: .6rem; letter-spacing: .08em; }
+      .hero-eyebrow { font-size: .6rem; letter-spacing: .15em; padding: .4rem .9rem; }
+      #inicio { padding: 0 1.4rem; }
     }
 
     /* ─── SECTION TITLES ─── */
@@ -466,19 +479,29 @@
     @media (max-width: 768px) {
       .nav-links, .nav-wsp-btn { display: none; }
       .hamburger { display: flex; }
+
       nav.open .nav-links {
         display: flex; flex-direction: column;
-        position: absolute; top: 70px; left: 0; right: 0;
-        background: var(--oscuro); padding: 1.5rem 2rem;
-        border-bottom: 1px solid rgba(201,168,76,0.1);
-        gap: 1.2rem;
+        position: fixed; top: 70px; left: 0; right: 0;
+        background: rgba(8,8,8,0.97);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        padding: 1.2rem 0 1.8rem;
+        border-bottom: 1px solid rgba(201,168,76,0.18);
+        gap: 0; z-index: 998;
+        box-shadow: 0 12px 40px rgba(0,0,0,0.7);
+        width: 100%;
       }
-      nav.open .nav-wsp-btn {
-        display: inline-flex;
-        margin: 0 2rem 1.5rem;
-        position: absolute; top: calc(70px + 10rem); left: 0; right: 0;
-        justify-content: center;
+      nav.open .nav-links li {
+        border-bottom: 1px solid rgba(255,255,255,0.05);
       }
+      nav.open .nav-links li:last-child { border-bottom: none; }
+      nav.open .nav-links a {
+        display: block; padding: 1rem 2rem;
+        font-size: .88rem; letter-spacing: .12em;
+      }
+      .nav-li-wsp { display: block; border-bottom: none !important; }
+
       .contacto-wrapper { grid-template-columns: 1fr; gap: 2rem; }
     }
 
@@ -500,6 +523,9 @@
     <li><a href="#servicios">Servicios</a></li>
     <li><a href="#trabajos">Trabajos</a></li>
     <li><a href="#consultas">Contacto</a></li>
+    <li class="nav-li-wsp">
+      <a href="https://wa.me/542494285254?text=Hola%2C%20consulto%20por%20pisos" target="_blank" class="nav-wsp-mobile">💬 Consultar por WhatsApp</a>
+    </li>
   </ul>
   <a class="nav-wsp-btn" href="https://wa.me/542494285254?text=Hola%2C%20consulto%20por%20pisos" target="_blank">
     💬 Consultar por WhatsApp
@@ -526,11 +552,11 @@
     </div>
     <div class="hero-stats">
       <div class="hero-stat">
-        <span class="hero-stat-n">+200</span>
+        <span class="hero-stat-n">+50</span>
         <span class="hero-stat-l">Obras terminadas</span>
       </div>
       <div class="hero-stat">
-        <span class="hero-stat-n">10+</span>
+        <span class="hero-stat-n">5+</span>
         <span class="hero-stat-l">Años de experiencia</span>
       </div>
       <div class="hero-stat">
