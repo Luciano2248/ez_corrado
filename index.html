@@ -63,57 +63,133 @@
     #inicio {
       min-height: 100vh;
       display: flex; align-items: center; justify-content: center;
-      text-align: center; padding: 120px 2rem 4rem;
+      text-align: center; padding: 0 2rem;
       position: relative; overflow: hidden;
     }
-    #inicio::before {
-      content: '';
-      position: absolute; inset: -20px;
+    .hero-video-bg {
+      position: absolute; inset: 0;
       background: url('IMG-20260525-WA0050.jpg') center/cover no-repeat;
-      filter: blur(5px);
-      transform: scale(1.05);
+      transform: scale(1.04);
+      transition: transform 8s ease;
       z-index: 0;
     }
-    #inicio::after {
-      content: '';
-      position: absolute; inset: 0;
-      background: rgba(0,0,0,0.62);
-      z-index: 1;
+    #inicio:hover .hero-video-bg { transform: scale(1.08); }
+    .hero-gradient {
+      position: absolute; inset: 0; z-index: 1;
+      background:
+        linear-gradient(to bottom, rgba(8,8,8,0.55) 0%, rgba(8,8,8,0.30) 40%, rgba(8,8,8,0.70) 100%),
+        linear-gradient(135deg, rgba(201,168,76,0.08) 0%, transparent 60%);
     }
-    .hero-content { position: relative; z-index: 2; max-width: 800px; }
-    .hero-logo { width: min(320px, 80vw); margin-bottom: 2rem; filter: drop-shadow(0 0 40px rgba(201,168,76,0.35)); }
+    .hero-content {
+      position: relative; z-index: 2; max-width: 860px;
+      display: flex; flex-direction: column; align-items: center;
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: .6rem;
+      background: rgba(201,168,76,0.12);
+      border: 1px solid rgba(201,168,76,0.3);
+      color: var(--oro2); font-size: .72rem;
+      letter-spacing: .3em; text-transform: uppercase; font-weight: 700;
+      padding: .45rem 1.2rem; border-radius: 50px;
+      margin-bottom: 2rem;
+    }
+    .hero-eyebrow::before {
+      content: ''; width: 6px; height: 6px; border-radius: 50%;
+      background: var(--oro); display: block;
+      animation: blink 1.8s infinite;
+    }
+    @keyframes blink {
+      0%,100% { opacity: 1; } 50% { opacity: 0.2; }
+    }
     .hero-content h1 {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(2.2rem, 6vw, 4rem);
-      font-weight: 700; line-height: 1.1;
-      background: linear-gradient(135deg, var(--oro) 0%, var(--oro2) 50%, var(--plata) 100%);
+      font-size: clamp(2.8rem, 7vw, 5.2rem);
+      font-weight: 700; line-height: 1.05;
+      color: #fff;
+      margin-bottom: 0.4rem;
+      letter-spacing: -.01em;
+    }
+    .hero-content h1 em {
+      font-style: italic;
+      background: linear-gradient(135deg, var(--oro) 0%, var(--oro2) 100%);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      margin-bottom: 1rem;
     }
-    .hero-content p {
-      font-size: clamp(1rem, 2.5vw, 1.25rem);
-      color: var(--plata); font-weight: 300; letter-spacing: .05em;
-      margin-bottom: 2.5rem;
+    .hero-sub {
+      font-size: clamp(.9rem, 2vw, 1.1rem);
+      color: rgba(255,255,255,0.65); font-weight: 300;
+      letter-spacing: .06em; line-height: 1.7;
+      margin-top: 1.4rem; margin-bottom: 2.8rem;
+      max-width: 560px;
     }
-    .hero-location { font-size: .9rem; color: var(--oro); letter-spacing: .2em; text-transform: uppercase; margin-bottom: 2rem; }
     .hero-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
     .btn-oro {
       background: linear-gradient(135deg, var(--oro), var(--oro2));
-      color: #080808; padding: .85rem 2rem; border-radius: 50px;
-      text-decoration: none; font-weight: 700; font-size: .9rem;
-      letter-spacing: .08em; text-transform: uppercase;
-      transition: transform .2s, box-shadow .2s;
-      box-shadow: 0 4px 20px rgba(201,168,76,0.35);
+      color: #080808; padding: .9rem 2.2rem; border-radius: 4px;
+      text-decoration: none; font-weight: 700; font-size: .82rem;
+      letter-spacing: .12em; text-transform: uppercase;
+      transition: transform .2s, box-shadow .2s, filter .2s;
+      box-shadow: 0 4px 24px rgba(201,168,76,0.4);
     }
-    .btn-oro:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(201,168,76,0.5); }
+    .btn-oro:hover { transform: translateY(-3px); box-shadow: 0 10px 36px rgba(201,168,76,0.55); filter: brightness(1.08); }
     .btn-wsp {
-      background: var(--wsp); color: #fff; padding: .85rem 2rem; border-radius: 50px;
-      text-decoration: none; font-weight: 700; font-size: .9rem;
-      letter-spacing: .08em; text-transform: uppercase; display: flex; align-items: center; gap: .5rem;
-      transition: transform .2s, box-shadow .2s;
-      box-shadow: 0 4px 20px rgba(37,211,102,0.3);
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.35);
+      color: #fff; padding: .9rem 2.2rem; border-radius: 4px;
+      text-decoration: none; font-weight: 600; font-size: .82rem;
+      letter-spacing: .12em; text-transform: uppercase;
+      display: flex; align-items: center; gap: .5rem;
+      transition: border-color .2s, background .2s, transform .2s;
     }
-    .btn-wsp:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(37,211,102,0.45); }
+    .btn-wsp:hover {
+      border-color: var(--wsp); background: rgba(37,211,102,0.12);
+      transform: translateY(-3px);
+    }
+    .hero-stats {
+      display: flex; gap: 0; margin-top: 4.5rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 2rem; width: 100%;
+      justify-content: center;
+    }
+    .hero-stat {
+      display: flex; flex-direction: column; align-items: center;
+      padding: 0 2.5rem;
+      border-right: 1px solid rgba(255,255,255,0.1);
+    }
+    .hero-stat:last-child { border-right: none; }
+    .hero-stat-n {
+      font-size: 2rem; font-weight: 900;
+      background: linear-gradient(135deg, var(--oro), var(--oro2));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      line-height: 1;
+    }
+    .hero-stat-l {
+      font-size: .68rem; color: rgba(255,255,255,0.45);
+      letter-spacing: .15em; text-transform: uppercase;
+      margin-top: .35rem; font-weight: 600;
+    }
+    .hero-scroll {
+      position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+      z-index: 2; display: flex; flex-direction: column; align-items: center; gap: .4rem;
+    }
+    .hero-scroll span {
+      font-size: .6rem; letter-spacing: .25em; text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+    }
+    .scroll-bar {
+      width: 1px; height: 44px;
+      background: linear-gradient(to bottom, rgba(201,168,76,0.7), transparent);
+      animation: scrollDown 1.8s ease infinite;
+    }
+    @keyframes scrollDown {
+      0% { transform: scaleY(0); transform-origin: top; opacity: 1; }
+      50% { transform: scaleY(1); transform-origin: top; opacity: 1; }
+      100% { transform: scaleY(1); transform-origin: bottom; opacity: 0; }
+    }
+    @media (max-width: 600px) {
+      .hero-stats { gap: 0; }
+      .hero-stat { padding: 0 1.2rem; }
+      .hero-stat-n { font-size: 1.5rem; }
+    }
 
     /* ─── SECTION TITLES ─── */
     .section-title {
@@ -219,33 +295,75 @@
       .fondo-panel { min-height: 75vw; }
     }
 
-    /* ─── NUESTROS TRABAJOS ─── */
+    /* ─── LO QUE HACEMOS ─── */
     #trabajos { background: var(--negro); }
     .trabajos-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 1rem;
+      gap: .8rem;
     }
     .trabajo-item {
       position: relative; border-radius: 10px; overflow: hidden;
       aspect-ratio: 4/3;
-      border: 1px solid rgba(201,168,76,0.08);
       background: var(--gris1);
+      cursor: pointer;
     }
     .trabajo-item img {
       width: 100%; height: 100%; object-fit: cover;
-      transition: transform .5s ease;
+      transition: transform .55s ease;
       display: block;
       user-select: none; pointer-events: none;
     }
-    .trabajo-item:hover img { transform: scale(1.05); }
+    .trabajo-item:hover img { transform: scale(1.08); }
+    .trabajo-hover {
+      position: absolute; inset: 0;
+      background: rgba(0,0,0,0);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: .5rem;
+      transition: background .35s ease;
+      padding: 1.5rem;
+    }
+    .trabajo-item:hover .trabajo-hover {
+      background: rgba(0,0,0,0.62);
+    }
+    .trabajo-hover-label {
+      font-size: .65rem; letter-spacing: .25em; text-transform: uppercase;
+      color: var(--oro2); font-weight: 700;
+      opacity: 0; transform: translateY(12px);
+      transition: opacity .3s ease .05s, transform .3s ease .05s;
+    }
+    .trabajo-hover-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.1rem, 2.5vw, 1.55rem);
+      color: #fff; font-weight: 700; text-align: center;
+      line-height: 1.2;
+      opacity: 0; transform: translateY(14px);
+      transition: opacity .3s ease .1s, transform .3s ease .1s;
+    }
+    .trabajo-hover-sep {
+      width: 30px; height: 1.5px; background: var(--oro);
+      opacity: 0; transform: scaleX(0);
+      transition: opacity .3s ease .15s, transform .3s ease .15s;
+    }
+    .trabajo-hover-desc {
+      font-size: .78rem; color: rgba(255,255,255,0.8);
+      text-align: center; line-height: 1.6; font-weight: 300;
+      max-width: 220px;
+      opacity: 0; transform: translateY(10px);
+      transition: opacity .3s ease .18s, transform .3s ease .18s;
+    }
+    .trabajo-item:hover .trabajo-hover-label,
+    .trabajo-item:hover .trabajo-hover-title,
+    .trabajo-item:hover .trabajo-hover-desc {
+      opacity: 1; transform: translateY(0);
+    }
+    .trabajo-item:hover .trabajo-hover-sep {
+      opacity: 1; transform: scaleX(1);
+    }
 
-    .trabajos-extra {
-      display: contents;
-    }
-    .trabajos-extra.oculto > .trabajo-item {
-      display: none;
-    }
+    .trabajos-extra { display: contents; }
+    .trabajos-extra.oculto > .trabajo-item { display: none; }
 
     .trabajos-cta {
       text-align: center;
@@ -255,10 +373,10 @@
       background: transparent;
       border: 1px solid var(--oro);
       color: var(--oro);
-      padding: .8rem 2.8rem; border-radius: 50px;
+      padding: .8rem 2.8rem; border-radius: 4px;
       font-family: 'Montserrat', sans-serif;
-      font-size: .82rem; font-weight: 700;
-      letter-spacing: .12em; text-transform: uppercase;
+      font-size: .78rem; font-weight: 700;
+      letter-spacing: .15em; text-transform: uppercase;
       cursor: pointer;
       transition: background .25s, color .25s, transform .2s;
     }
@@ -393,17 +511,37 @@
 
 <!-- ═══════════ HERO ═══════════ -->
 <section id="inicio">
+  <div class="hero-video-bg"></div>
+  <div class="hero-gradient"></div>
   <div class="hero-content">
-    <div class="hero-location">📍 Tandil, Buenos Aires</div>
-    <h1>Pisos que duran toda la vida</h1>
-    <p>Hormigón llanado · Microcemento · Alisado · Texturas<br>
-       Instalación profesional por Ezequiel Corrado</p>
+    <div class="hero-eyebrow">Tandil · Buenos Aires · Argentina</div>
+    <h1>Pisos que<br><em>hablan por sí solos</em></h1>
+    <p class="hero-sub">Hormigón llanado · Microcemento · Alisado · Texturas.<br>Terminaciones de alta calidad por Ezequiel Corrado.</p>
     <div class="hero-btns">
-      <a href="#trabajos" class="btn-oro">Ver trabajos realizados</a>
+      <a href="#trabajos" class="btn-oro">Ver trabajos</a>
       <a href="https://wa.me/542494285254?text=Hola%2C%20quiero%20un%20presupuesto" target="_blank" class="btn-wsp">
-        💬 Pedir presupuesto
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Pedir presupuesto
       </a>
     </div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <span class="hero-stat-n">+200</span>
+        <span class="hero-stat-l">Obras terminadas</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-n">10+</span>
+        <span class="hero-stat-l">Años de experiencia</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-n">100%</span>
+        <span class="hero-stat-l">Garantía en obra</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span>scroll</span>
+    <div class="scroll-bar"></div>
   </div>
 </section>
 
@@ -466,12 +604,12 @@
   </div>
 </section>
 
-<!-- ═══════════ NUESTROS TRABAJOS ═══════════ -->
+<!-- ═══════════ LO QUE HACEMOS ═══════════ -->
 <section id="trabajos">
   <div class="container">
     <div class="section-title fade-in">
       <span class="tag">Experiencia comprobada</span>
-      <h2>Nuestros Trabajos</h2>
+      <h2>Lo que hacemos</h2>
       <div class="divider"></div>
     </div>
 
@@ -479,24 +617,60 @@
       <!-- Fotos visibles por defecto -->
       <div class="trabajo-item fade-in">
         <img src="IMG-20260525-WA0029.jpg" alt="Piso de hormigón industrial" loading="lazy">
+        <div class="trabajo-hover">
+          <span class="trabajo-hover-label">Industrial</span>
+          <span class="trabajo-hover-title">Piso de Hormigón Llanado</span>
+          <div class="trabajo-hover-sep"></div>
+          <p class="trabajo-hover-desc">Nave industrial en Tandil. Superficie de alta resistencia al tránsito pesado.</p>
+        </div>
       </div>
       <div class="trabajo-item fade-in">
         <img src="IMG-20260525-WA0034.jpg" alt="Losa de hormigón con junta" loading="lazy">
+        <div class="trabajo-hover">
+          <span class="trabajo-hover-label">Exterior</span>
+          <span class="trabajo-hover-title">Losa con Junta de Dilatación</span>
+          <div class="trabajo-hover-sep"></div>
+          <p class="trabajo-hover-desc">Contrapiso exterior con junta central. Control de fisuras y acabado prolijo.</p>
+        </div>
       </div>
       <div class="trabajo-item fade-in">
         <img src="IMG-20260525-WA0050.jpg" alt="Piso alisado al atardecer" loading="lazy">
+        <div class="trabajo-hover">
+          <span class="trabajo-hover-label">Residencial</span>
+          <span class="trabajo-hover-title">Piso Alisado</span>
+          <div class="trabajo-hover-sep"></div>
+          <p class="trabajo-hover-desc">Piso alisado en vivienda particular. Terminación lisa y uniforme para exterior.</p>
+        </div>
       </div>
 
       <!-- Fotos ocultas hasta Ver más -->
       <div class="trabajos-extra oculto">
         <div class="trabajo-item fade-in">
           <img src="IMG-20260525-WA0037.jpg" alt="Acceso y sendero de hormigón" loading="lazy">
+          <div class="trabajo-hover">
+            <span class="trabajo-hover-label">Accesos</span>
+            <span class="trabajo-hover-title">Sendero y Acceso Vehicular</span>
+            <div class="trabajo-hover-sep"></div>
+            <p class="trabajo-hover-desc">Acceso vehicular en hormigón. Resistente, prolijo y de bajo mantenimiento.</p>
+          </div>
         </div>
         <div class="trabajo-item fade-in">
           <img src="IMG-20260525-WA0047.jpg" alt="Encofrado y fundaciones" loading="lazy">
+          <div class="trabajo-hover">
+            <span class="trabajo-hover-label">Fundaciones</span>
+            <span class="trabajo-hover-title">Encofrado y Viga de Fundación</span>
+            <div class="trabajo-hover-sep"></div>
+            <p class="trabajo-hover-desc">Armado de encofrado con vigas perimetrales para losa de hormigón armado.</p>
+          </div>
         </div>
         <div class="trabajo-item fade-in">
           <img src="IMG-20260525-WA0040.jpg" alt="Patio hormigón alisado con quincho" loading="lazy">
+          <div class="trabajo-hover">
+            <span class="trabajo-hover-label">Quincho</span>
+            <span class="trabajo-hover-title">Patio con Quincho</span>
+            <div class="trabajo-hover-sep"></div>
+            <p class="trabajo-hover-desc">Patio alisado fresco recién terminado junto a quincho. Acabado perfecto.</p>
+          </div>
         </div>
       </div>
     </div>
