@@ -375,8 +375,18 @@
       opacity: 1; transform: scaleX(1);
     }
 
-    .trabajos-extra { display: contents; }
-    .trabajos-extra.oculto > .trabajo-item { display: none; }
+    .trabajos-extra {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: .8rem;
+      margin-top: .8rem;
+    }
+    .trabajos-extra.oculto { display: none; }
+    .trabajos-extra .trabajo-item {
+      flex: 0 0 calc((100% - 1.6rem) / 3);
+      max-width: calc((100% - 1.6rem) / 3);
+    }
 
     .trabajos-cta {
       text-align: center;
@@ -400,9 +410,17 @@
 
     @media (max-width: 700px) {
       .trabajos-grid { grid-template-columns: repeat(2, 1fr); }
+      .trabajos-extra .trabajo-item {
+        flex: 0 0 calc(50% - .4rem);
+        max-width: calc(50% - .4rem);
+      }
     }
     @media (max-width: 420px) {
       .trabajos-grid { grid-template-columns: 1fr; }
+      .trabajos-extra .trabajo-item {
+        flex: 0 0 100%;
+        max-width: 100%;
+      }
     }
 
     /* ─── CONTACTO ─── */
@@ -695,6 +713,31 @@
         </div>
       </div>
     </div>
+
+    <div class="trabajos-extra oculto">
+      <div class="trabajo-item fade-in">
+        <img src="IMG-20260525-WA0047.jpg" alt="Encofrado y fundaciones" loading="lazy">
+        <div class="trabajo-hover">
+          <span class="trabajo-hover-label">Fundaciones</span>
+          <span class="trabajo-hover-title">Encofrado y Viga de Fundación</span>
+          <div class="trabajo-hover-sep"></div>
+          <p class="trabajo-hover-desc">Armado de encofrado con vigas perimetrales para losa de hormigón armado.</p>
+        </div>
+      </div>
+      <div class="trabajo-item fade-in">
+        <img src="IMG-20260525-WA0040.jpg" alt="Patio hormigón alisado con quincho" loading="lazy">
+        <div class="trabajo-hover">
+          <span class="trabajo-hover-label">Quincho</span>
+          <span class="trabajo-hover-title">Patio con Quincho</span>
+          <div class="trabajo-hover-sep"></div>
+          <p class="trabajo-hover-desc">Patio alisado fresco recién terminado junto a quincho. Acabado perfecto.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="trabajos-cta">
+      <button class="btn-ver-mas" id="btnVerMas" onclick="toggleTrabajos()">Ver más trabajos</button>
+    </div>
   </div>
 </section>
 
@@ -761,6 +804,21 @@
     document.getElementById('navbar').style.boxShadow =
       window.scrollY > 20 ? '0 4px 30px rgba(0,0,0,0.8)' : 'none';
   });
+
+  /* ─── VER MÁS TRABAJOS ─── */
+  function toggleTrabajos() {
+    const extra = document.querySelector('.trabajos-extra');
+    const btn = document.getElementById('btnVerMas');
+    const abierto = !extra.classList.contains('oculto');
+    if (abierto) {
+      extra.classList.add('oculto');
+      btn.textContent = 'Ver más trabajos';
+    } else {
+      extra.classList.remove('oculto');
+      btn.textContent = 'Ver menos';
+      extra.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    }
+  }
 
   /* ─── SCROLL FADE IN ─── */
   const observer = new IntersectionObserver((entries) => {
