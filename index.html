@@ -640,7 +640,6 @@
     </div>
 
     <div class="trabajos-grid">
-      <!-- Fotos visibles por defecto -->
       <div class="trabajo-item fade-in">
         <img src="IMG-20260525-WA0029.jpg" alt="Piso de hormigón industrial" loading="lazy">
         <div class="trabajo-hover">
@@ -668,60 +667,33 @@
           <p class="trabajo-hover-desc">Piso alisado en vivienda particular. Terminación lisa y uniforme para exterior.</p>
         </div>
       </div>
-
       <div class="trabajo-item fade-in">
-        <img src="esc1.jpg" alt="Hormigón faenado" loading="lazy">
+        <img src="esc1.jpg" alt="Estructuras de hormigón" loading="lazy">
         <div class="trabajo-hover">
-          <span class="trabajo-hover-label">Faenado</span>
-          <span class="trabajo-hover-title">Hormigón Faenado</span>
+          <span class="trabajo-hover-label">Estructuras</span>
+          <span class="trabajo-hover-title">Estructuras de Hormigón</span>
           <div class="trabajo-hover-sep"></div>
-          <p class="trabajo-hover-desc">Pavimento de hormigón faenado con terminación de alta resistencia y estética industrial.</p>
+          <p class="trabajo-hover-desc">Escaleras y estructuras de hormigón con diseño. Combinamos técnica y estética en cada proyecto.</p>
         </div>
       </div>
       <div class="trabajo-item fade-in">
         <img src="esc2.jpg" alt="Pavimento de hormigón faenado" loading="lazy">
         <div class="trabajo-hover">
           <span class="trabajo-hover-label">Faenado</span>
-          <span class="trabajo-hover-title">Pavimento Faenado</span>
+          <span class="trabajo-hover-title">Hormigón Faenado</span>
           <div class="trabajo-hover-sep"></div>
           <p class="trabajo-hover-desc">Pavimento de hormigón faenado en exterior. Durabilidad y acabado profesional.</p>
         </div>
       </div>
-
-      <!-- Fotos ocultas hasta Ver más -->
-      <div class="trabajos-extra oculto">
-        <div class="trabajo-item fade-in">
-          <img src="IMG-20260525-WA0037.jpg" alt="Acceso y sendero de hormigón" loading="lazy">
-          <div class="trabajo-hover">
-            <span class="trabajo-hover-label">Accesos</span>
-            <span class="trabajo-hover-title">Sendero y Acceso Vehicular</span>
-            <div class="trabajo-hover-sep"></div>
-            <p class="trabajo-hover-desc">Acceso vehicular en hormigón. Resistente, prolijo y de bajo mantenimiento.</p>
-          </div>
-        </div>
-        <div class="trabajo-item fade-in">
-          <img src="IMG-20260525-WA0047.jpg" alt="Encofrado y fundaciones" loading="lazy">
-          <div class="trabajo-hover">
-            <span class="trabajo-hover-label">Fundaciones</span>
-            <span class="trabajo-hover-title">Encofrado y Viga de Fundación</span>
-            <div class="trabajo-hover-sep"></div>
-            <p class="trabajo-hover-desc">Armado de encofrado con vigas perimetrales para losa de hormigón armado.</p>
-          </div>
-        </div>
-        <div class="trabajo-item fade-in">
-          <img src="IMG-20260525-WA0040.jpg" alt="Patio hormigón alisado con quincho" loading="lazy">
-          <div class="trabajo-hover">
-            <span class="trabajo-hover-label">Quincho</span>
-            <span class="trabajo-hover-title">Patio con Quincho</span>
-            <div class="trabajo-hover-sep"></div>
-            <p class="trabajo-hover-desc">Patio alisado fresco recién terminado junto a quincho. Acabado perfecto.</p>
-          </div>
+      <div class="trabajo-item fade-in">
+        <img src="IMG-20260525-WA0037.jpg" alt="Acceso y sendero de hormigón" loading="lazy">
+        <div class="trabajo-hover">
+          <span class="trabajo-hover-label">Accesos</span>
+          <span class="trabajo-hover-title">Sendero y Acceso Vehicular</span>
+          <div class="trabajo-hover-sep"></div>
+          <p class="trabajo-hover-desc">Acceso vehicular en hormigón. Resistente, prolijo y de bajo mantenimiento.</p>
         </div>
       </div>
-    </div>
-
-    <div class="trabajos-cta">
-      <button class="btn-ver-mas" id="btnVerMas" onclick="toggleTrabajos()">Ver más trabajos</button>
     </div>
   </div>
 </section>
@@ -796,21 +768,6 @@
   }, { threshold: 0.12 });
   document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-  /* ─── VER MÁS TRABAJOS ─── */
-  function toggleTrabajos() {
-    const extra = document.querySelector('.trabajos-extra');
-    const btn = document.getElementById('btnVerMas');
-    const abierto = !extra.classList.contains('oculto');
-
-    if (abierto) {
-      extra.classList.add('oculto');
-      btn.textContent = 'Ver más trabajos';
-    } else {
-      extra.classList.remove('oculto');
-      btn.textContent = 'Ver menos';
-      extra.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-    }
-  }
 </script>
 </body>
 </html>
