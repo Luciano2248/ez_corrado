@@ -312,8 +312,17 @@
     #trabajos { background: var(--negro); }
     .trabajos-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(6, 1fr);
       gap: .8rem;
+    }
+    .trabajos-grid .trabajo-item {
+      grid-column: span 2;
+    }
+    .trabajos-grid .trabajo-item:nth-last-child(2) {
+      grid-column: 2 / 4;
+    }
+    .trabajos-grid .trabajo-item:nth-last-child(1) {
+      grid-column: 4 / 6;
     }
     .trabajo-item {
       position: relative; border-radius: 10px; overflow: hidden;
@@ -397,10 +406,16 @@
     }
 
     @media (max-width: 700px) {
-      .trabajos-grid { grid-template-columns: repeat(2, 1fr); }
+      .trabajos-grid { grid-template-columns: repeat(4, 1fr); }
+      .trabajos-grid .trabajo-item { grid-column: span 2; }
+      .trabajos-grid .trabajo-item:nth-last-child(2),
+      .trabajos-grid .trabajo-item:nth-last-child(1) { grid-column: span 2; }
     }
     @media (max-width: 420px) {
       .trabajos-grid { grid-template-columns: 1fr; }
+      .trabajos-grid .trabajo-item { grid-column: span 1; }
+      .trabajos-grid .trabajo-item:nth-last-child(2),
+      .trabajos-grid .trabajo-item:nth-last-child(1) { grid-column: span 1; }
     }
 
     /* ─── CONTACTO ─── */
